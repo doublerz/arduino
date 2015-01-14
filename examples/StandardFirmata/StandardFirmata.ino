@@ -654,6 +654,10 @@ void systemResetCallback()
 
 void setup()
 {
+  // Set PWM for pins D9 & D10 to 31372.55 Hz
+  // see http://arduino-info.wikispaces.com/Arduino-PWM-Frequency
+  TCCR1B = TCCR1B & B11111000 | B00000001;
+
   Firmata.setFirmwareVersion(FIRMATA_MAJOR_VERSION, FIRMATA_MINOR_VERSION);
 
   Firmata.attach(ANALOG_MESSAGE, analogWriteCallback);
